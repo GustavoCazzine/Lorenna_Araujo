@@ -1,0 +1,171 @@
+/* =================================================================== */
+/* ============= TEMPLATE PRESTIGE "Aroma & Grão" v4.0 =============== */
+/* =================================================================== */
+
+:root {
+    /* -- CORES DA MARCA LORENNA -- */
+    --cor-primaria: #D39389;          /* Rosa Queimado Escuro (da escrita) para botões sólidos */
+    --cor-primaria-hover: #c3837a;  /* Um tom um pouco mais escuro para o hover */
+    --cor-secundaria: #3b3b3b;        /* Cinza Chumbo para títulos importantes */
+    --cor-acento: #F8D8CC;            /* Rosa Queimado Claro (do fundo da logo) para o banner */
+    
+    /* -- CORES NEUTRAS -- */
+    --cor-texto: #5c5c5c;             /* Cinza quente para parágrafos */
+    --cor-fundo: #fef9f7;              /* Fundo da página, um branco rosado */
+    --cor-fundo-card: #ffffff;        /* Card branco para máximo contraste */
+    --cor-branca: #ffffff;            /* Variável para o branco puro */
+
+    /* -- FONTES E ESTILOS -- */
+    --fonte-display: 'Playfair Display', serif;
+    --fonte-principal: 'Poppins', sans-serif;
+    --raio-borda-padrao: 16px;
+    --sombra-padrao: 0 12px 35px rgba(211, 147, 137, 0.15); /* Sombra com a cor da marca */
+}
+
+
+/* --- Estilos Globais e do Body --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza o card verticalmente */
+    min-height: 100vh;
+    padding: 30px 20px;
+    overflow-x: hidden;
+}
+
+body.fundo-gradiente {
+    /* Define as duas cores do gradiente: um cinza bem claro e branco */
+    --cor-fundo-1: #D39389; /* O mesmo cinza claro do fundo estático */
+    --cor-fundo-2: #ffffff;
+
+    /* O resto do código permanece o mesmo */
+    background: linear-gradient(-45deg, var(--cor-fundo-1), var(--cor-fundo-2), var(--cor-fundo-1));
+    background-size: 400% 400%;
+    animation: subtleGradient 12s ease infinite;
+}
+
+/* O Keyframe não precisa de alteração */
+@keyframes subtleGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Estilo do Card Principal --- */
+.card-container {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--cor-fundo-card);
+    border-radius: 28px;
+    box-shadow: var(--sombra-padrao);
+    overflow: hidden;
+}
+
+/* --- Cabeçalho Curvo e Foto --- */
+.profile-header {
+    position: relative;
+    height: 150px;
+    background-color: #ccc;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    /* Garante que nada "vaze" para fora desta div */
+    overflow: hidden; 
+}
+
+.banner-image img { width: 100%; height: 100%;object-fit: cover; object-position: 50% 60%;}
+
+.profile-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -50%;
+    width: 200%;
+    height: 100px;
+    background-color: var(--cor-fundo-card);
+    border-radius: 50% 50% 0 0;
+    transform: translateY(65%);
+}
+.profile-picture-overlapping {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid var(--cor-fundo-card);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    object-fit: cover;
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* --- Seção de Informações do Perfil (COM A CORREÇÃO) --- */
+.profile-info {
+    position: relative; /* << ESSA LINHA COLOCA O TEXTO NA CAMADA DE CIMA */
+    z-index: 20;       /* << GARANTE QUE FIQUE ACIMA DA FOTO */
+    text-align: center;
+    margin-top: clamp(60px, 10vh, 75px);
+    padding: 0 25px;
+}
+.profile-name { font-family: var(--fonte-display); font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 700; color: var(--cor-secundaria); }
+.profile-bio { font-size: clamp(0.875rem, 4vw, 1rem); color: #888; margin-top: 8px; }
+
+/* --- Título de Ação e Botões --- */
+.action-title { text-align: center; font-weight: 500; color: #c0c0c0; font-size: 0.9em; margin: clamp(20px, 4vh, 35px) 0 10px 0; text-transform: uppercase; letter-spacing: 1.5px; }
+.links-section { padding: clamp(10px, 2vh, 15px) 30px 0px 30px; display: flex; flex-direction: column; }
+.link-button { display: flex; align-items: center; justify-content: center; background-color: var(--cor-primaria); color: var(--cor-branca); text-decoration: none; padding: 16px; margin-bottom: 16px; border-radius: var(--raio-borda-padrao); font-size: clamp(1rem, 4vw, 1.125rem); font-weight: 500; border: 2px solid var(--cor-primaria); transition: all 0.3s ease; cursor: pointer; }
+.link-button:hover { background-color: var(--cor-primaria-hover); border-color: var(--cor-primaria-hover); transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.link-button:active { transform: translateY(0px) scale(0.98); }
+.link-button i { margin-right: 12px; font-size: 1.2em; }
+.btn-outline { background-color: transparent; color: var(--cor-primaria); border-color: var(--cor-acento); color: var(--cor-secundaria); }
+.btn-outline:hover { background-color: var(--cor-acento); border-color: var(--cor-acento); color: var(--cor-branca); }
+
+/* --- ESTILO FINAL DO RODAPÉ E CRÉDITOS --- */
+.footer-section {
+    text-align: center;
+    padding: clamp(15px, 2vh, 25px) 30px clamp(20px, 3vh, 30px) 30px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.social-icons a {
+    color: #d0d0d0; /* Um cinza bem claro e neutro */
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--cor-acento); /* Usa a cor de acento do cliente no hover */
+    transform: translateY(-3px);
+}
+
+/* O estilo da linha de créditos */
+.credits {
+    font-size: 0.8em;
+    color: #d0d0d0; /* Mesma cor dos ícones para consistência */
+}
+
+/* O estilo para o seu nome/marca, que estará dentro de um <a> */
+.credits a {
+    color: #b0b0b0; /* Um pouco mais de destaque, mas ainda sutil */
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.credits a:hover {
+    color: var(--cor-primaria); /* Ao passar o mouse, ganha a cor principal do cliente */
+}
